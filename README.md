@@ -6,7 +6,6 @@ so it will lot of faster (depends on your local ethernet maximum speed) to downl
 ## Requirements
 
 - Docker
-- Docker Compose
 - Internet connection
 - More than 120GB hard drive
 
