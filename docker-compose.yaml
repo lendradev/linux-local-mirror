@@ -1,0 +1,30 @@
+version: '3.3'
+
+volumes:
+  archpool:
+  ubuntupool:
+
+services:
+  # Default pool page
+  repopage:
+    build:
+      dockerfile: Dockerfile
+      context: repopage
+
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - archpool:/pool/archlinux
+      - ubuntupool:/pool/ubuntu
+    restart: always
+    network_mode: "host"
+
+  # Arch pool syncer
+  archreposyncer:
+    build:
+      dockerfile: Dockerfile
+      context: syncer/archlinux
+    volumes:
+      - archpool:/pool/archlinux
+    restart: always
